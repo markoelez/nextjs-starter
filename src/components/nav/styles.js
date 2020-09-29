@@ -11,7 +11,7 @@ export const StyledNav = styled.nav`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 25px 10px;
+  padding: 10px 10px;
 
   ${({ borderType }) => handleBorderType(borderType)};
 
@@ -21,7 +21,7 @@ export const StyledNav = styled.nav`
   z-index: 20;
 
   @media ${device.laptop} {
-    padding: 25px;
+    padding: 25px 5%;
   }
 `
 
@@ -35,6 +35,8 @@ const handleBorderType = (type) => {
       return css`
         border-bottom: 1px solid rgb(241, 241, 241);
       `
+    case 'none':
+      return
     default:
       return
   }
@@ -44,7 +46,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   width: 100%;
 
@@ -86,16 +88,27 @@ export const LogoWrapper = styled.div`
 export const LinkItem = styled.div`
   display: flex;
 
+  color: ${(props) => props.textColor};
+
+  &:hover {
+    color: ${(props) => props.textColorHover};
+  }
+
+  transition-property: color, border-color, background-color;
+  transition: 0.1s linear;
+
+  text-transform: uppercase;
+
   ${mixin.clickable};
 
   ${({ isActive, activeColor }) =>
     isActive &&
     css`
-      border-bottom: 2px solid ${activeColor};
+      //border-bottom: 2px solid ${activeColor};
     `};
 
   ${font.medium};
-  ${font.size(16)};
+  ${font.size(14)};
 
   padding: 0 30px;
 `
@@ -106,23 +119,26 @@ export const LinkButton = styled.div`
   ${mixin.clickable};
 
   ${font.medium};
-  ${font.size(10)};
+  ${font.size(14)};
 
-  border-style: solid;
-  border-radius: 18px;
+  border-radius: 3px;
 
-  padding: 8px 14px;
+  padding: 10px 15px;
 
-  background: #a8f6ce;
-  color: #000;
+  background: ${(props) => props.buttonColor};
+  color: ${(props) => props.buttonTextColor};
   text-transform: uppercase;
 
-  transition: 0.15s linear;
+  transition: 0.1s linear;
   transition-property: color, border-color, background-color;
+
+  &:hover {
+    background: ${(props) => mixin.lighten(props.buttonColor, 0.3)};
+  }
 
   @media ${device.laptop} {
     ${font.medium};
-    ${font.size(16)};
-    padding: 15px 48px;
+    ${font.size(13)};
+    padding: 10px 18px;
   }
 `

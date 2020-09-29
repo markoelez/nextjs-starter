@@ -4,11 +4,17 @@ import { css } from 'styled-components'
 import Color from 'color'
 
 export const color = {
-  primary: '#ff4e37', // Main orange
-  secondary: '#5569d4', // Unimetrics purple
-  success: '#0B875B', // green
-  danger: '#E13C3C', // red
-  warning: '#F89C1C', // orange
+  primary: '#000',
+  secondary: '#5569d4',
+  success: '#0B875B',
+  danger: '#E13C3C',
+  warning: '#F89C1C',
+
+  blue: '#28286e',
+  red: '#ff4b49',
+  beige: '#fafaf4',
+  green: '#41cf8e',
+  gray: '#f4f5f7',
 
   textDarkest: '#172b4d',
   textDark: '#42526E',
@@ -21,7 +27,7 @@ export const color = {
   backgroundMedium: '#dfe1e6',
   backgroundLight: '#fff',
   backgroundLightest: '#F4F5F7',
-  backgroundLightPrimary: '#D2E5FE',
+  backgroundLightPrimary: '#f8f9fb',
   backgroundLightSuccess: '#E4FCEF',
 
   borderLightest: '#dfe1e6',
@@ -35,21 +41,12 @@ export const zIndexValues = {
   navLeft: 100,
 }
 
-// export const font = {
-//   light: 'font-family: "F37 Ginger"; font-weight: 200;',
-//   regular: 'font-family: "F37 Ginger"; font-weight: 400;',
-//   medium: 'font-family: "F37 Ginger"; font-weight: 500;',
-//   bold: 'font-family: "F37 Ginger"; font-weight: 700;',
-//   black: 'font-family: "F37 Ginger"; font-weight: 800;',
-//   size: (size) => `font-size: ${size}px;`,
-// }
-
 export const font = {
-  light: 'font-family: "DIN 2014"; font-weight: 200;',
-  regular: 'font-family: "DIN 2014"; font-weight: 400;',
-  medium: 'font-family: "DIN 2014"; font-weight: 600;',
-  bold: 'font-family: "DIN 2014"; font-weight: 700;',
-  black: 'font-family: "DIN 2014"; font-weight: 800;',
+  light: 'font-family: "F37 Ginger"; font-weight: 200;',
+  regular: 'font-family: "F37 Ginger"; font-weight: 400;',
+  medium: 'font-family: "F37 Ginger"; font-weight: 500;',
+  bold: 'font-family: "F37 Ginger"; font-weight: 700;',
+  black: 'font-family: "F37 Ginger"; font-weight: 800;',
   size: (size) => `font-size: ${size}px;`,
 }
 

@@ -7,7 +7,7 @@ import Head from 'next/head'
 import Nav from '@components/nav'
 import { NavRoutes } from '@utils/constants/nav_routes'
 
-import { Page, Container, Main, Video, Title, Description } from './styles'
+import { Page, Container, Main, Title, Description } from './styles'
 
 const Home = () => {
   const ANIMATION_DELAY = 0.2
@@ -24,28 +24,15 @@ const Home = () => {
 
       <Nav
         bgColor="transparent"
-        textColor="#fff"
-        logoColor="white"
-        borderType="light"
+        textColor="#000"
+        textColorHover="#888"
+        logoColor="#000"
+        borderType="dark"
+        buttonVariant="primary"
         route={NavRoutes.HOME}
       />
 
       <Container>
-        {/* <Video
-          src="https://firebasestorage.googleapis.com/v0/b/unimetrics.appspot.com/o/stanford.mp4?alt=media&token=17b37e0a-ff7b-4d9a-9a4a-8699b7c820e6"
-          playsinline
-          loop
-          autoPlay
-          muted
-          preload="auto"
-          initial={{ opacity: 0, y: DELTA_Y }}
-          animate={{ opacity: 0.15, y: 0 }}
-          transition={{
-            delay: 0.5,
-            duration: ANIMATION_DURATION,
-            ease: TRANSITION_EASE_IN,
-          }}
-        /> */}
         <Main>
           <Title
             initial={{ opacity: 0, y: DELTA_Y }}

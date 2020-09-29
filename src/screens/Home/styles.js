@@ -2,7 +2,7 @@
 
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { font, color, device } from '@utils/styles'
+import { font, device } from '@utils/styles'
 
 export const Page = styled.div`
   text-align: center;
@@ -10,7 +10,7 @@ export const Page = styled.div`
   min-height: 100vh;
   width: 100%;
 
-  background-color: ${color.backgroundDarkPrimary};
+  background-color: #fff;
 `
 
 export const Container = styled.div`
@@ -45,7 +45,7 @@ export const Main = styled.div`
 `
 
 export const Title = styled(motion.div)`
-  color: white;
+  color: #000;
 
   ${font.regular};
 
@@ -63,7 +63,7 @@ export const Title = styled(motion.div)`
 `
 
 export const Description = styled(motion.div)`
-  color: white;
+  color: #000;
 
   ${font.regular};
   ${font.size(18)};
@@ -72,25 +72,6 @@ export const Description = styled(motion.div)`
   }
 
   text-align: center;
-`
-
-export const Video = styled(motion.video)`
-  object-fit: cover;
-
-  opacity: 0.15;
-
-  transition: opacity 0.35s linear 0.35s, transform 1s ease,
-    -webkit-transform 1s ease;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  min-width: 100%;
-  min-height: 100vh;
-
-  z-index: 2;
 `
 
 export const Actions = styled.div`

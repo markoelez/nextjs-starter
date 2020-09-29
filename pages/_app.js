@@ -12,7 +12,6 @@ import * as gtag from '@utils/analytics'
 import NormalizeStyles from '@utils/styles/normalize_styles'
 import BaseStyles from '@utils/styles/base_styles'
 import '@utils/styles/font_styles.css'
-import '@utils/styles/din.css'
 
 const propTypes = {
   Component: PropTypes.function,
