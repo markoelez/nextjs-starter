@@ -8,8 +8,8 @@ export const StyledIcon = styled.i`
       ? `transform: translate(${props.left}px, ${props.top}px);`
       : ''}
   &:before {
-    content: "${(props) => props.code}";
-    font-family: "jira" !important;
+    content: '${(props) => props.code}';
+    font-family: 'jira' !important;
     speak: none;
     font-style: normal;
     font-weight: normal;

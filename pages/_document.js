@@ -5,7 +5,7 @@ import { ServerStyleSheet } from 'styled-components'
 
 import Document, { Head, Main, NextScript } from 'next/document'
 
-import { GA_TRACKING_ID } from '@utils/analytics'
+import { GA_TRACKING_ID } from '@shared/utils/analytics'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {

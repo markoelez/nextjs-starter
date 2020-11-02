@@ -9,11 +9,9 @@ import { Button } from '@shared/components'
 import Logo from '@components/logo'
 import { COMPANY_LOGO_NAME } from '@shared/utils/constants/styles'
 import Header from './header'
-import Companies from './companies'
-import Features from './features'
-import Banner from './banner'
+import PriceGrid from './price_grid'
 
-const Home = () => {
+const Pricing = () => {
   const NAV_ITEMS = ['product', 'solutions', 'learn', 'pricing']
 
   return (
@@ -46,7 +44,7 @@ const Home = () => {
             icon="arrow-right"
             iconPos="after"
             variant="dark"
-            background={color.primary}
+            background="#516cf0"
             color="#fff"
           >
             Get Started
@@ -66,12 +64,10 @@ const Home = () => {
         )}
       />
       <Header />
-      <Companies />
-      <Features />
-      <Banner />
+      <PriceGrid />
       <Footer />
     </Fragment>
   )
 }
 
-export default Home
+export default Pricing

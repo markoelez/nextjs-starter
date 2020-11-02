@@ -4,8 +4,9 @@ import { css } from 'styled-components'
 import Color from 'color'
 
 export const color = {
-  primary: '#000',
-  secondary: '#5569d4',
+  //primary: '#0542d6',
+  primary: '#0f24ce',
+  secondary: '#f32e46',
   success: '#0B875B',
   danger: '#E13C3C',
   warning: '#F89C1C',
@@ -19,11 +20,19 @@ export const color = {
   textDarkest: '#172b4d',
   textDark: '#42526E',
   textMedium: '#5E6C84',
-  textLight: '#8993a4',
-  textLink: '#0052cc',
 
-  backgroundDarkPrimary: '#000',
-  backgroundDarkSecondary: '#1f303a', // Cruise dark background gray
+  inputBackground: '#efeef3',
+
+  textLight: '#000',
+  textLightSecondary: '#989899',
+  textLightTertiary: '#5a5a5e',
+  textLink: '#516cf0',
+
+  backgroundDarkPrimary: '#0542d6',
+  backgroundDarkSecondary: '#1c1d1f',
+
+  formInputBackground: '#fff',
+
   backgroundMedium: '#dfe1e6',
   backgroundLight: '#fff',
   backgroundLightest: '#F4F5F7',
@@ -140,7 +149,7 @@ export const mixin = {
     }
   `,
   backgroundImage: (imageURL) => css`
-    background-image: url("${imageURL}");
+    background-image: url('${imageURL}');
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;

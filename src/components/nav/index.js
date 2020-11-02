@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import Logo from '@components/logo'
-import { Button } from '@shared'
-import { NavRoutes } from '@utils/constants/nav_routes'
-import { color } from '@utils/styles'
-
+import Hamburger from 'hamburger-react'
+import Scrollspy from 'react-scrollspy'
 import Link from 'next/link'
 
 import {
   StyledNav,
+  MobileLinkItem,
   Content,
   Section,
+  ActionsSection,
+  Mobile,
+  MobileMenu,
   LogoWrapper,
   CompanyName,
   LinkItem,
@@ -19,106 +20,198 @@ import {
 } from './styles'
 
 const propTypes = {
+  scrolledMobileToggleColor: PropTypes.string,
+  mobileTextColor: PropTypes.string,
+  mobileToggleColor: PropTypes.string,
+  mobileBackground: PropTypes.string,
+  items: PropTypes.list,
+  renderLogo: PropTypes.func,
+  renderButton: PropTypes.func,
+  renderScrolledButton: PropTypes.func,
+  brandText: PropTypes.string,
   textColor: PropTypes.string,
-  buttonColor: PropTypes.string,
-  buttonTextColor: PropTypes.string,
+  scrolledTextColor: PropTypes.string,
+  scrolledLogoColor: PropTypes.string,
   textColorHover: PropTypes.string,
-  bgColor: PropTypes.string,
+  background: PropTypes.string,
+  scrolledBackground: PropTypes.string,
   logoColor: PropTypes.string,
+  logoTextColor: PropTypes.string,
+  position: PropTypes.oneOf(['fixed', 'absolute', 'relative']),
   borderType: PropTypes.oneOf(['dark', 'light', 'none']),
-  buttonVariant: PropTypes.oneOf(['dark', 'light']),
-  route: PropTypes.string,
+  //route: PropTypes.string,
 }
 
 const defaultProps = {
-  textColor: color.textLight,
+  scrolledMobileToggleColor: '#000',
+  mobileTextColor: '#000',
+  mobileToggleColor: '#000',
+  mobileBackground: '#fff',
+  items: undefined,
+  brandText: undefined,
+  scrolledTextColor: '#000',
+  scrolledLogoColor: '#000',
+  textColor: '#000',
   textColorHover: '#000',
-  buttonColor: '#000',
-  buttonTextColor: '#fff',
-  bgColor: '#fff',
-  logoColor: 'primary',
+  position: 'absolute',
+  background: '#fff',
+  scrolledBackground: '#fff',
+  logoColor: '#000',
+  logoTextColor: '#000',
   borderType: 'light',
-  buttonVariant: 'light',
-  route: NavRoutes.HOME,
+  //route: '/',
+  renderLogo: undefined,
+  renderButton: undefined,
+  renderScrolledButton: undefined,
 }
 
 const Nav = ({
-  route,
+  mobileTextColor,
+  mobileToggleColor,
+  mobileBackground,
+  brandText,
+  items,
+  //route,
   textColor,
-  buttonColor,
-  buttonTextColor,
+  scrolledTextColor,
   textColorHover,
-  bgColor,
+  renderLogo,
+  renderButton,
+  renderScrolledButton,
+  background,
+  scrolledBackground,
+  scrolledLogoColor,
   logoColor,
+  logoTextColor,
   borderType,
-  buttonVariant,
+  position,
+  scrolledMobileToggleColor,
 }) => {
-  return (
-    <StyledNav textColor={textColor} bgColor={bgColor} borderType={borderType}>
-      <Content>
-        <Section>
-          <LogoWrapper>
-            <Link href="/">
-              <Logo icon="company" color={logoColor} disableFill={true} />
-            </Link>
-          </LogoWrapper>
-          <Link href="/">
-            <CompanyName logoColor={logoColor}>Unimetrics</CompanyName>
-          </Link>
-        </Section>
+  const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: '-100%' },
+  }
 
-        <LinksSection>
-          <Link href="/product">
-            <LinkItem
-              isActive={route === NavRoutes.FORUM}
-              textColorHover={textColorHover}
-              activeColor={logoColor}
-            >
-              Product
-            </LinkItem>
-          </Link>
-          <Link href="/solutions">
-            <LinkItem
-              isActive={route === NavRoutes.MISSION}
-              activeColor={logoColor}
-              textColorHover={textColorHover}
-            >
-              Solutions
-            </LinkItem>
-          </Link>
-          <Link href="/learn">
-            <LinkItem
-              isActive={route === NavRoutes.COMPANY}
-              activeColor={logoColor}
-              textColorHover={textColorHover}
-            >
-              Learn
-            </LinkItem>
-          </Link>
-          <Link href="/pricing">
-            <LinkItem
-              isActive={route === NavRoutes.SERVICES}
-              activeColor={logoColor}
-              textColorHover={textColorHover}
-            >
-              Pricing
-            </LinkItem>
-          </Link>
-        </LinksSection>
-        <Section>
-          <Button
-            href="https://app.unimetrics.io"
-            icon="arrow-right"
-            iconPos="after"
-            variant={buttonVariant}
-            backgroundColor={buttonColor}
-            color={buttonTextColor}
+  const [hasScrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen)
+
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset
+    if (scrollTop > 60) {
+      setScrolled(true)
+    } else {
+      setScrolled(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const getRoute = (name) => {
+    return '/' + name.toLowerCase().replace(/\s/g, '-')
+  }
+
+  return (
+    <Fragment>
+      <StyledNav
+        background={background}
+        scrolledBackground={scrolledBackground}
+        borderType={borderType}
+        position={position}
+        scrolled={hasScrolled}
+      >
+        <Content>
+          <Scrollspy offset={-64}>
+            <Section scrolled={hasScrolled}>
+              {renderLogo && (
+                <LogoWrapper
+                  color={logoColor}
+                  scrolledColor={scrolledLogoColor}
+                  scrolled={hasScrolled}
+                >
+                  <Link href="/">{renderLogo()}</Link>
+                </LogoWrapper>
+              )}
+              {brandText && (
+                <Link href="/">
+                  <CompanyName
+                    color={logoTextColor}
+                    scrolledColor={scrolledLogoColor}
+                    scrolled={hasScrolled}
+                  >
+                    {brandText}
+                  </CompanyName>
+                </Link>
+              )}
+            </Section>
+          </Scrollspy>
+
+          <LinksSection
+            color={textColor}
+            scrolledColor={scrolledTextColor}
+            scrolled={hasScrolled}
           >
-            Sign Up
-          </Button>
-        </Section>
-      </Content>
-    </StyledNav>
+            {items.map((v, i) => (
+              <Link key={i} href={getRoute(v)}>
+                <LinkItem
+                  onClick={() => setMobileMenuOpen(false)}
+                  key={i}
+                  isActive={false}
+                  textColorHover={textColorHover}
+                  activeColor={logoColor}
+                >
+                  {v.toLowerCase()}
+                </LinkItem>
+              </Link>
+            ))}
+          </LinksSection>
+          <ActionsSection>
+            <Mobile>
+              {!hasScrolled && renderButton && renderButton()}
+              {hasScrolled && renderScrolledButton && renderScrolledButton()}
+            </Mobile>
+            <Mobile hide={true}>
+              <Hamburger
+                toggled={mobileMenuOpen}
+                toggle={toggleMobileMenu}
+                size={25}
+                color={
+                  hasScrolled ? scrolledMobileToggleColor : mobileToggleColor
+                }
+              />
+            </Mobile>
+          </ActionsSection>
+        </Content>
+      </StyledNav>
+      {
+        <MobileMenu
+          color={mobileTextColor}
+          background={mobileBackground}
+          initial={false}
+          animate={mobileMenuOpen ? 'open' : 'closed'}
+          variants={variants}
+        >
+          {items.map((v, i) => (
+            <Link key={i} href={'/' + v.toLowerCase()}>
+              <MobileLinkItem
+                onClick={() => setMobileMenuOpen(false)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                key={i}
+                isActive={false}
+                textColorHover={textColorHover}
+                activeColor={logoColor}
+              >
+                {v.toLowerCase()}
+              </MobileLinkItem>
+            </Link>
+          ))}
+        </MobileMenu>
+      }
+    </Fragment>
   )
 }
 

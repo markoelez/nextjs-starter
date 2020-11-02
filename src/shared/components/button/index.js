@@ -1,39 +1,37 @@
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 
-import { color } from '@utils/styles'
-import Icon from '@shared/icon'
+import { color } from '@shared/utils/styles'
+import { Icon } from '@shared/components'
 
 import { StyledButton, StyledSpinner, Text } from './styles'
 
 const propTypes = {
+  variant: PropTypes.oneOf(['light', 'dark']),
   className: PropTypes.string,
   children: PropTypes.node,
-  variant: PropTypes.oneOf([
-    'primary',
-    'success',
-    'danger',
-    'secondary',
-    'empty',
-  ]),
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   iconPos: PropTypes.oneOf(['before', 'after']),
   iconSize: PropTypes.number,
   disabled: PropTypes.bool,
   isWorking: PropTypes.bool,
   onClick: PropTypes.func,
+  background: PropTypes.string,
+  color: PropTypes.string,
 }
 
 const defaultProps = {
+  variant: 'light',
   className: undefined,
   children: undefined,
-  variant: 'secondary',
   iconPos: 'before',
   icon: undefined,
   iconSize: 18,
   disabled: false,
   isWorking: false,
   onClick: () => {},
+  background: color.primary,
+  color: '#000',
 }
 
 const Button = forwardRef(
@@ -47,6 +45,8 @@ const Button = forwardRef(
       isWorking,
       onClick,
       iconPos,
+      background,
+      color,
       ...buttonProps
     },
     ref
@@ -64,12 +64,14 @@ const Button = forwardRef(
         variant={variant}
         disabled={disabled || isWorking}
         isWorking={isWorking}
+        background={background}
+        color={color}
         iconOnly={!children}
         ref={ref}
       >
         {isWorking && <StyledSpinner size={26} color={getIconColor(variant)} />}
 
-        {iconPos == 'after' && children && (
+        {iconPos === 'after' && children && (
           <Text withPadding={isWorking || icon}>{children}</Text>
         )}
         {!isWorking && icon && typeof icon === 'string' ? (
@@ -77,7 +79,7 @@ const Button = forwardRef(
         ) : (
           icon
         )}
-        {iconPos == 'before' && children && (
+        {iconPos === 'before' && children && (
           <Text withPadding={isWorking || icon}>{children}</Text>
         )}
       </StyledButton>

@@ -6,12 +6,12 @@ import { wrapper } from '@redux/store'
 
 // Analytics
 import Router from 'next/router'
-import * as gtag from '@utils/analytics'
+import * as gtag from '@shared/utils/analytics'
 
 // Base styles
-import NormalizeStyles from '@utils/styles/normalize_styles'
-import BaseStyles from '@utils/styles/base_styles'
-import '@utils/styles/font_styles.css'
+import NormalizeStyles from '@shared/utils/styles/normalize_styles'
+import BaseStyles from '@shared/utils/styles/base_styles'
+import '@shared/utils/styles/font_styles.css'
 
 const propTypes = {
   Component: PropTypes.function,

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { color as colors } from '@utils/styles'
+import { color as colors } from '@shared/utils/styles'
 
 const propTypes = {
   className: PropTypes.string,
